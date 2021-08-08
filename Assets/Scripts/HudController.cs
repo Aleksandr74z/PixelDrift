@@ -18,15 +18,16 @@ public class HudController : MonoBehaviour
     {
         _session = FindObjectOfType<GameSessions>();
         _session.OnScoreChanged += ScoreChangeHandler;
-
         _counterDistance = FindObjectOfType<CounterDistance>();
-        _counterDistance.OnDistanceChanged += DistanceChangeHandler;
-        _counterDistance.OnSpeedChanged += DeterminationSpeed;
-        _counterDistance.OnAngleChanged += AngleChangeHandler;
-
         _fuelMachine = FindObjectOfType<FuelMachine>();
         _fuelMachine.OnFuelChanged += SetFuel;
+    }
 
+    private void Update()
+    {
+        DistanceChangeHandler(_counterDistance.CompletedDistance);
+        DeterminationSpeed(_counterDistance.CarSpeed);
+        AngleChangeHandler(_counterDistance.DriftAngle);
     }
 
     private void ScoreChangeHandler(int score)

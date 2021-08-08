@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    [SerializeField] private GameObject _particleCoin;
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         
@@ -11,7 +9,6 @@ public class Coin : MonoBehaviour
         if (car)
         {            
             Destroy(gameObject);
-            Instantiate(_particleCoin, transform.position, transform.rotation);
         }
     }
 }

@@ -25,7 +25,6 @@ public class FuelMachine : MonoBehaviour
         {
             OnFuelChanged?.Invoke(i);
             yield return new WaitForSeconds(1f);
-            //Debug.Log(i);
         }
     }
 }

@@ -8,9 +8,9 @@ public class CounterDistance : MonoBehaviour
     private float _totalDistance;
     private float _distanceOnOneFrame;
 
-    public event Action<int> OnDistanceChanged;
-    public event Action<int> OnSpeedChanged;
-    public event Action<int> OnAngleChanged;
+    public int CompletedDistance { get; private set; }
+    public int CarSpeed { get; private set; }
+    public int DriftAngle { get; private set; }
 
     void Start()
     {
@@ -22,9 +22,7 @@ public class CounterDistance : MonoBehaviour
         DistanceCovered();
         DefinitionTotalPosition();
         DefinitionDistanceOnOneFrame();
-
         AngleCar();
-
     }
 
     private void DistanceCovered()
@@ -39,14 +37,14 @@ public class CounterDistance : MonoBehaviour
     {
         // Высчитывает пройденную дистанцию за кадр, суммирует её и передает на экран событием
         _totalDistance += (_distance).magnitude;
-        OnDistanceChanged?.Invoke((int)_totalDistance);
+        CompletedDistance = (int)_totalDistance;
     }
 
     private void DefinitionDistanceOnOneFrame()
     {
         // Высчитывает скорость и передаёт на экран событием
         _distanceOnOneFrame = (_distance).magnitude;
-        OnSpeedChanged?.Invoke((int)(_distanceOnOneFrame * 100));
+        CarSpeed = (int)(_distanceOnOneFrame * 100);
     }
 
     private void AngleCar()
@@ -55,7 +53,7 @@ public class CounterDistance : MonoBehaviour
 
         // Высчитывает угол между вектором направление движени и поворотом машины
         float angle = Math.Abs(Vector3.Angle(_distance, new Vector3(0, 1, 0))) - 180 + Math.Abs(180 - transform.eulerAngles.z);
-        OnAngleChanged?.Invoke(Math.Abs((int)angle));
+        DriftAngle = Math.Abs((int)angle);
         
 
 
