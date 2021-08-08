@@ -4,7 +4,6 @@ using UnityEngine;
 public class CounterDistance : MonoBehaviour
 {
     private Vector3 _oldPosition, _distance;
-    private Quaternion _oldAngle;
     private float _totalDistance;
     private float _distanceOnOneFrame;
 
@@ -49,14 +48,9 @@ public class CounterDistance : MonoBehaviour
 
     private void AngleCar()
     {
-        // Debug.Log(Math.Abs(Vector3.Angle(_distance, new Vector3(0, 1, 0))));
-
         // Высчитывает угол между вектором направление движени и поворотом машины
         float angle = Math.Abs(Vector3.Angle(_distance, new Vector3(0, 1, 0))) - 180 + Math.Abs(180 - transform.eulerAngles.z);
         DriftAngle = Math.Abs((int)angle);
-        
-
-
     }
    
 }
