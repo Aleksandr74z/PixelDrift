@@ -12,15 +12,12 @@ public class HudController : MonoBehaviour
 
     private GameSessions _session;
     private CounterDistance _counterDistance;
-    private FuelMachine _fuelMachine;
 
     private void Start()
     {
         _session = FindObjectOfType<GameSessions>();
         _session.OnScoreChanged += ScoreChangeHandler;
         _counterDistance = FindObjectOfType<CounterDistance>();
-        _fuelMachine = FindObjectOfType<FuelMachine>();
-        _fuelMachine.OnFuelChanged += SetFuel;
     }
 
     private void Update()
